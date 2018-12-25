@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'scala'
+}
+
+group 'org.sambaran'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.scala-lang:scala-library:2.12.8'
+    testImplementation 'org.scalatest:scalatest_2.12:3.0.0'
+    testImplementation 'junit:junit:4.12'
+}
+sourceSets {
+    main {
+        scala {
+            srcDirs = ['src/main/scala']
+        }
+    }
+    test {
+        scala {
+            srcDirs = ['test/main/scala']
+        }
+    }
+}
