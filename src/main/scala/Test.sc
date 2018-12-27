@@ -4,6 +4,8 @@ import scala.annotation.tailrec
 4 * 5
 
 def factorial(num: Int): BigInt = {
+
+  @tailrec
   def loop(n: Int, fact: BigInt): BigInt = {
     if (n <= 0) fact
     else loop(n - 1, n * fact)
