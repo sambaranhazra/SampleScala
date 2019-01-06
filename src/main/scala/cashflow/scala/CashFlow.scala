@@ -1,25 +1,25 @@
 package cashflow.scala
 
-import java.time.LocalDateTime
+import java.time.{LocalDate, LocalDateTime}
 
-case class Cashflow(amount: Double, currency: String, due: LocalDateTime) {
+case class CashFlow(amount: Double, currency: String, due: LocalDateTime) {
   def this(amount: Double, due: LocalDateTime) = this(amount, "USD", due)
 
   def this(amount: Double) = this(amount, LocalDateTime.now())
 
-  val settle = due.toLocalDate.plusDays(2)
+  val settle: LocalDate = due.toLocalDate.plusDays(2)
 
   private lazy val processedAt = LocalDateTime.now
 
-  def rollForward() = {
-    val retVal = new Cashflow(amount, currency, due.plusDays(1))
+  def rollForward(): CashFlow = {
+    val retVal = new CashFlow(amount, currency, due.plusDays(1))
     retVal.processedAt
     retVal
   }
 }
 
-object Cashflow extends App {
-  val c1 = new Cashflow(12.34)
+object CashFlow extends App {
+  val c1 = new CashFlow(12.34)
   println(c1.settle)
 
   val c2 = c1.rollForward()
